@@ -1,13 +1,11 @@
 
-import React from 'react';
+import ResponsiveDrawer from 'components/Drawer';
 import { Outlet } from 'react-router-dom';
 
 const Root = () => {
   return (
     <div>
-      <header>
-        my header
-      </header>
+      <ResponsiveDrawer />
 
       <Outlet />
     </div>
