@@ -20,8 +20,7 @@ import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
-import { useNavigate } from "react-router-dom";
-
+// import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -62,33 +61,45 @@ function ResponsiveDrawer(props) {
     },
   }));
 
-  const navegate = useNavigate();
+  // const navegate = useNavigate();
+
+  const MyList = () => {
+    const myList = [
+      { title: "Home", link: "/", icon: <HomeIcon /> },
+      { title: "Create", link: "/", icon: <CreateIcon /> },
+    ];
+
+    return (
+      <List>
+        {myList.map((item) => {
+          return (
+            <ListItem key={item.title} disablePadding>
+              <ListItemButton
+                // onClick={() => navegate(text.toLowerCase())}
+                
+              >
+                <ListItemIcon>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.title} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
+      </List>
+    );
+  };
 
   const drawer = (
-    
     <div>
       <Toolbar />
       <Divider />
-      <List>
-        {["Home", "Create"].map((text, index) => (
-          
-            <ListItem key={text} disablePadding>
-              <ListItemButton onClick={() => navegate(text.toLowerCase())} selected={index === 0}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <HomeIcon /> : <CreateIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          
-        ))}
-      </List>
+      <MyList />
     </div>
   );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-    
 
   return (
     <Box sx={{ display: "flex" }}>

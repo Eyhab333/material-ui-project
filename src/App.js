@@ -11,7 +11,7 @@ import Create from "pages/create/Create";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route index element={<Home />} />
+      <Route index path="/" element={<Home />} />
       <Route path="create" element={<Create />} />
     </Route>
   )
