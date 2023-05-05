@@ -19,14 +19,14 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
-import Paper from "@mui/material/Paper";
-// import { useNavigate } from "react-router-dom";
-
-const drawerWidth = 240;
+import { useNavigate } from "react-router-dom";
 
 function ResponsiveDrawer(props) {
   const { window } = props;
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const drawerWidth = 240;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -61,12 +61,12 @@ function ResponsiveDrawer(props) {
     },
   }));
 
-  // const navegate = useNavigate();
+  const navegate = useNavigate();
 
   const MyList = () => {
     const myList = [
       { title: "Home", link: "/", icon: <HomeIcon /> },
-      { title: "Create", link: "/", icon: <CreateIcon /> },
+      { title: "Create", link: "/create", icon: <CreateIcon /> },
     ];
 
     return (
@@ -74,13 +74,8 @@ function ResponsiveDrawer(props) {
         {myList.map((item) => {
           return (
             <ListItem key={item.title} disablePadding>
-              <ListItemButton
-                // onClick={() => navegate(text.toLowerCase())}
-                
-              >
-                <ListItemIcon>
-                  {item.icon}
-                </ListItemIcon>
+              <ListItemButton onClick={() => navegate(item.link)}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.title} />
               </ListItemButton>
             </ListItem>
@@ -104,11 +99,16 @@ function ResponsiveDrawer(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
+
+
+
       <AppBar
         position="fixed"
+        
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          
         }}
       >
         <Toolbar>
@@ -149,19 +149,21 @@ function ResponsiveDrawer(props) {
         </Toolbar>
       </AppBar>
 
+
+
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -173,6 +175,11 @@ function ResponsiveDrawer(props) {
         >
           {drawer}
         </Drawer>
+
+
+
+
+
         <Drawer
           variant="permanent"
           sx={{
@@ -186,7 +193,25 @@ function ResponsiveDrawer(props) {
         >
           {drawer}
         </Drawer>
+
+
+
       </Box>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <Box
         component="main"
@@ -196,25 +221,12 @@ function ResponsiveDrawer(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Divider />
-        <Paper elevation={3} />
+      
       </Box>
+
+
+
+
     </Box>
   );
 }
