@@ -16,13 +16,19 @@ import CreateIcon from "@mui/icons-material/Create";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { green } from '@mui/material/colors';
 
-function ResponsiveDrawer(props) {
-  const { window } = props;
+const color = green[500];
+
+
+
+function ResponsiveDrawer(props ) {
+  const { window, setmymode } = props;
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -30,6 +36,7 @@ function ResponsiveDrawer(props) {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  
   };
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -61,7 +68,8 @@ function ResponsiveDrawer(props) {
     },
   }));
 
-  const navegate = useNavigate();
+  
+  
 
   const MyList = () => {
     const myList = [
@@ -74,7 +82,12 @@ function ResponsiveDrawer(props) {
         {myList.map((item) => {
           return (
             <ListItem key={item.title} disablePadding>
-              <ListItemButton onClick={() => navegate(item.link)}>
+              <ListItemButton onClick={() => 
+                
+                navegate(item.link)}
+                
+                sx={{bgcolor: currentLocation.pathname === item.link ? color : "null"}}
+                >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.title} />
               </ListItemButton>
@@ -85,9 +98,19 @@ function ResponsiveDrawer(props) {
     );
   };
 
+  const currentLocation = useLocation();
+  const navegate = useNavigate();
+  const theme = useTheme();
+
   const drawer = (
     <div>
-      <Toolbar />
+      <Toolbar>
+        <Button onClick={() => {
+          localStorage.setItem("currentMode", theme.palette.mode === "light" ? "dark" : "light")
+          
+          setmymode(theme.palette.mode === "light" ? "dark" : "light")
+        }} variant="contained" color="success">Toggle theme</Button>
+      </Toolbar>
       <Divider />
       <MyList />
     </div>
@@ -240,3 +263,5 @@ ResponsiveDrawer.propTypes = {
 };
 
 export default ResponsiveDrawer;
+
+
