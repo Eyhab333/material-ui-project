@@ -1,6 +1,7 @@
 import Home from "pages/home/Home";
 import Create from "pages/create/Create";
 import Root from "./pages/Root";
+import Notfound from "pages/Notfound";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -14,22 +15,13 @@ const router = createBrowserRouter(
     <Route path="/" element={<Root />}>
       <Route index element={<Home />} />
       <Route path="create" element={<Create />} />
+      <Route path="*" element={<Notfound />} />
     </Route>
   )
 );
 
-
-
-
-
 function App() {
-
-  return (
-    
-    <RouterProvider router={router}/>
-    
-    
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
