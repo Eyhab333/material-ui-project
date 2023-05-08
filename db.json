@@ -1,5 +1,14 @@
 {
   "mydata": [
-    
+    {
+      "title": "Pizza",
+      "cost": 10,
+      "id": 1
+    },
+    {
+      "title": "Burger",
+      "cost": 11,
+      "id": 2
+    }
   ]
 }

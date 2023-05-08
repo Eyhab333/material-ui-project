@@ -1,11 +1,15 @@
 import { Box, Button, InputAdornment, TextField } from "@mui/material";
 import "./Create.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useState } from "react";
 
 const Create = () => {
+  const [title, setTitle] = useState("");
+  const [cost, setCost] = useState(0);
+
   return (
     <Box
-      component='form'
+      component="form"
       sx={{
         p: "50px",
         border: "0.1px solid white",
@@ -17,22 +21,40 @@ const Create = () => {
       }}
     >
       <TextField
+        onChange={(e) => setTitle(e.target.value)}
         InputProps={{
-          startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+          startAdornment: <InputAdornment position="start">T</InputAdornment>,
         }}
         id="outlined-basic"
         label="Title"
         variant="outlined"
+        autoComplete="none"
       />
+
       <TextField
+        onChange={(e) => setCost(Number(e.target.value))}
         InputProps={{
           startAdornment: <InputAdornment position="start">$</InputAdornment>,
         }}
         id="outlined-basic"
         label="Cost"
         variant="outlined"
+        autoComplete="none"
       />
-      <Button variant="contained" color="success" endIcon={<AddCircleIcon />}>
+      <Button
+        onClick={() => {
+          fetch(" http://localhost:3000/mydata  ", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, cost }),
+          });
+        }}
+        variant="contained"
+        color="success"
+        endIcon={<AddCircleIcon />}
+      >
         Create
       </Button>
     </Box>

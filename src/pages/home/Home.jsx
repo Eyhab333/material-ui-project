@@ -1,8 +1,13 @@
 import { Box, IconButton, Paper, Typography } from "@mui/material";
 import "./Home.css";
 import { Close } from "@mui/icons-material";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => { }, []);
+
+
+
   return (
     <Box sx={{ height: "100px", width: "310px" }}>
       <Paper
