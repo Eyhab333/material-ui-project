@@ -2,10 +2,12 @@ import { Box, Button, InputAdornment, TextField } from "@mui/material";
 import "./Create.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const [title, setTitle] = useState("");
   const [cost, setCost] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -28,7 +30,7 @@ const Create = () => {
         id="outlined-basic"
         label="Title"
         variant="outlined"
-        autoComplete="none"
+        autoComplete="off"
       />
 
       <TextField
@@ -49,7 +51,10 @@ const Create = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ title, cost }),
-          });
+          })
+          .then(() => {
+            navigate('/')
+          })
         }}
         variant="contained"
         color="success"
