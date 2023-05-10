@@ -54,7 +54,7 @@ const Create = () => {
         variant="outlined"
         autoComplete="off"
         error={errors.title ? true : false}
-        helperText={errors.title ? errors.title.message : ""}
+        helperText={errors.title ? errors.title?.message.toString() : null}
       />
 
       <TextField
